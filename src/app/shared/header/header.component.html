@@ -1,0 +1,11 @@
+<mat-toolbar class="mat-elevation-z8">
+  <button mat-icon-button *ngIf="sidebarState.mode === 'over'" (click)="onToggleSidebar()">
+    <mat-icon *ngIf="!sidebarState.opened">
+      menu
+    </mat-icon>
+    <mat-icon *ngIf="sidebarState.opened">
+      close
+    </mat-icon>
+  </button>
+  Manager
+</mat-toolbar>
