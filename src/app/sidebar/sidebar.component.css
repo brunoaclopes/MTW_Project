@@ -1,0 +1,7 @@
+mat-list-item:hover, mat-list-item:active{
+  color: white;
+}
+
+.nav-caption{
+  padding-left: 6px;
+}
