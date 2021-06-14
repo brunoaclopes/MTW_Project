@@ -5,7 +5,17 @@ const sql = require('mssql');
 async function getEvaluations(){
     try {
         let pool = await sql.connect(config);
-        let evaluations = await pool.request().query("select * from ComponenteAvaliacao");
+        let evaluations = await pool.request().query("select * from CompAvaliacao");
+        return evaluations.recordsets;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async function getStudentsEvaluations(){
+    try {
+        let pool = await sql.connect(config);
+        let evaluations = await pool.request().query("select * from Notas");
         return evaluations.recordsets;
     } catch (error) {
         console.log(error);
@@ -120,5 +130,6 @@ module.exports = {
     getStudentEvaluations : getStudentEvaluations,
     editStudentEvaluation : editStudentEvaluation,
     removeStudentEvaluation : removeStudentEvaluation,
-    addStudentEvaluation : addStudentEvaluation
+    addStudentEvaluation : addStudentEvaluation,
+    getStudentsEvaluations : getStudentsEvaluations
 }

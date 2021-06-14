@@ -26,7 +26,7 @@ async function addCourse(course) {
     try {
         let pool = await sql.connect(config);
         let insertCourse = await pool.request()
-            .query("INSERT INTO Curso VALUES ('" + course.Nome + "')");
+            .query("INSERT INTO Curso VALUES ('" + course + "')");
         return insertCourse.recordsets;
     }
     catch (err) {

@@ -5,7 +5,7 @@ const sql = require('mssql');
 async function getClasses(){
     try {
         let pool = await sql.connect(config);
-        let classes = await pool.request().query("select * from Turma");
+        let classes = await pool.request().query("select * from classes");
         return classes.recordsets;
     } catch (error) {
         console.log(error);

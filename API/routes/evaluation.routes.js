@@ -8,6 +8,12 @@ module.exports = function(router){
         })
     })
 
+    router.route('/studentsEvaluations').get((request,response)=>{
+        dboperations.getStudentsEvaluations().then(result => {
+            response.json(result[0]);
+        })
+    })
+
     router.route('/studentEvaluations').get((request,response)=>{
         dboperations.getStudentEvaluations().then(result => {
             response.json(result[0]);

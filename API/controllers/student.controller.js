@@ -5,7 +5,7 @@ const sql = require('mssql');
 async function getStudents(){
     try {
         let pool = await sql.connect(config);
-        let students = await pool.request().query("select * from Aluno");
+        let students = await pool.request().query("SELECT * FROM Students");
         return students.recordsets;
     } catch (error) {
         console.log(error);
