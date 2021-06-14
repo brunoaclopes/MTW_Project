@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-grade-create',
   templateUrl: './grade-create.component.html',
   styleUrls: ['./grade-create.component.scss']
 })
-export class GradeCreateComponent implements OnInit {
+export class GradeCreateComponent {
+  @Input() datasource!: any[];
+  @Input() label!: string;
+  @Input() labelKey!: string;
+  @Input() value!: any;
+  @Input() valueKey!: string;
+  evalComponent: any; // Preencher com o componente de avaliacao selecionado
 
-  constructor() { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
+  onAddGrade(){
+
+    this.router.navigate(['/grades'])
   }
 
 }
