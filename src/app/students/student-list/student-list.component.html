@@ -1,0 +1,41 @@
+<div class="mat-elevation-z8 content">
+  <div style="display: flex">
+    <h1 style="margin: 0; text-align: center">Students</h1>
+    <button mat-raised-button color="primary" class="topButton" [routerLink]="['/']" >
+      Add Student
+    </button>
+  </div>
+  <div class="divTable">
+    <table mat-table [dataSource]="courses" style="background: none">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="birthdate">
+        <th mat-header-cell *matHeaderCellDef> Birthdate </th>
+        <td mat-cell *matCellDef="let element"> {{element.birthdate}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="course">
+        <th mat-header-cell *matHeaderCellDef> Course </th>
+        <td mat-cell *matCellDef="let element"> {{element.course}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell  *matHeaderCellDef > Actions </th>
+        <td mat-cell *matCellDef="let row" >
+          <button mat-icon-button [routerLink]="['/']">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="onRemove()">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+  <mat-paginator [pageSizeOptions]="[10, 20, 50]" showFirstLastButtons style="background: none"></mat-paginator>
+</div>

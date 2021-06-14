@@ -46,6 +46,8 @@ import { CourseListComponent } from './course/course-list/course-list.component'
 import { DialogComponent } from './dialog/dialog.component';
 import { CourseCreateComponent } from './course/course-create/course-create.component';
 import { ClassListComponent } from './classes/class-list/class-list.component';
+import { StudentListComponent } from './students/student-list/student-list.component';
+import { GradeListComponent } from './grades/grade-list/grade-list.component';
 
 
 @NgModule({
@@ -58,7 +60,9 @@ import { ClassListComponent } from './classes/class-list/class-list.component';
     CourseListComponent,
     DialogComponent,
     CourseCreateComponent,
-    ClassListComponent
+    ClassListComponent,
+    StudentListComponent,
+    GradeListComponent
   ],
   imports: [
     BrowserModule,
