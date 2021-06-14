@@ -48,6 +48,12 @@ import { CourseCreateComponent } from './course/course-create/course-create.comp
 import { ClassListComponent } from './classes/class-list/class-list.component';
 import { StudentListComponent } from './students/student-list/student-list.component';
 import { GradeListComponent } from './grades/grade-list/grade-list.component';
+import { ClassCreateComponent } from './classes/class-create/class-create.component';
+import { GradeCreateComponent } from './grades/grade-create/grade-create.component';
+import { StudentCreateComponent } from './students/student-create/student-create.component';
+import { EvaluationcompCreateComponent } from './grades/evaluationcomp-create/evaluationcomp-create.component';
+import { ClassLinkStudentComponent } from './classes/class-link-student/class-link-student.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -62,7 +68,12 @@ import { GradeListComponent } from './grades/grade-list/grade-list.component';
     CourseCreateComponent,
     ClassListComponent,
     StudentListComponent,
-    GradeListComponent
+    GradeListComponent,
+    ClassCreateComponent,
+    GradeCreateComponent,
+    StudentCreateComponent,
+    EvaluationcompCreateComponent,
+    ClassLinkStudentComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +111,9 @@ import { GradeListComponent } from './grades/grade-list/grade-list.component';
     MatPaginatorModule,
     RouterModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
