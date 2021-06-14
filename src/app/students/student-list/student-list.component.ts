@@ -42,14 +42,14 @@ const ELEMENT_DATA: PeriodicElement[] = [
 
 export class StudentListComponent implements AfterViewInit {
   displayedColumns: string[] = ['name', 'birthdate', 'course', 'actions'];
-  courses = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  students = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private dialog: MatDialog,
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
-    this.courses.paginator = this.paginator;
+    this.students.paginator = this.paginator;
   }
 
   onRemove(){
