@@ -43,6 +43,7 @@ import { HeaderComponent } from './shared/header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CourseListComponent } from './course/course-list/course-list.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -52,7 +53,8 @@ import { CourseListComponent } from './course/course-list/course-list.component'
     HeaderComponent,
     SidebarComponent,
     DashboardComponent,
-    CourseListComponent
+    CourseListComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,

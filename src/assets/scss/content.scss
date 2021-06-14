@@ -1,5 +1,8 @@
+@import "buttons";
+
 .content {
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 190px);
   border-radius: 10px;
   margin: 10px 10px 10px 20px;
+  padding: 25px;
 }
