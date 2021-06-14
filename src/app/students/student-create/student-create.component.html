@@ -1,0 +1,21 @@
+<div class="mat-elevation-z8 content">
+    <h1 style="margin: 0;">Add Student</h1>
+  <mat-form-field appearance="standard" color="accent">
+    <mat-label>Name</mat-label>
+    <input matInput required>
+  </mat-form-field>
+<br/>
+  <mat-form-field appearance="standard" color="accent">
+    <mat-label>Birthdate</mat-label>
+    <input matInput type="date" required>
+  </mat-form-field>
+
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddStudent()" style="margin: 5px;">
+      Add Student
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/students']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</div>

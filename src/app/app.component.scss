@@ -1,7 +1,10 @@
+@import "./src/custom-theme";
+@import "~@angular/material/theming";
+
 .mat-sidenav {
   margin: 10px;
   width: 230px;
-  background: #F9C80E;
+  background: mat-color($Project-primary);
   color: #221E22;
   border-right: none;
   border-radius: 10px;

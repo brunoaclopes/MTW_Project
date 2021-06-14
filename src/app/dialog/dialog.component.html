@@ -1,0 +1,8 @@
+<mat-dialog-content>
+  <mat-icon style="font-size: 48px; position: center">delete</mat-icon>
+  <p>{{message}}</p>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions align="center">
+  <button mat-raised-button color="primary" mat-dialog-close tabindex="-1" (click)="onConfirmClick()">{{confirmButtonText}}</button>
+</mat-dialog-actions>
