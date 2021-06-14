@@ -12,7 +12,7 @@ export class StudentCreateComponent {
 
   onAddStudent(){
 
-    this.router.navigate(['/student'])
+    this.router.navigate(['/students'])
   }
 
 }
