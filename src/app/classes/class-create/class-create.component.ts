@@ -17,7 +17,7 @@ export class ClassCreateComponent {
 
   onAddClass(){
 
-    this.router.navigate(['/course'])
+    this.router.navigate(['/class'])
   }
 
 }

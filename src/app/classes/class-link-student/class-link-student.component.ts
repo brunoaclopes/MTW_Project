@@ -18,7 +18,7 @@ export class ClassLinkStudentComponent {
 
   onAddStudent(){
 
-    this.router.navigate(['/grades'])
+    this.router.navigate(['/class'])
   }
 
 }
