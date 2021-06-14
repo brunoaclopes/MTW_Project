@@ -1,7 +1,12 @@
 @import "./src/assets/scss/content.scss";
 
-table {
+.divTable {
   margin-top: 16px;
+  height: calc(100vh - 300px);
+  overflow: auto;
+}
+
+table{
   width: 100%;
 }
 

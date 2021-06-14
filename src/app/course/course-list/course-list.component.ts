@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogComponent} from "../../dialog/dialog.component";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
 
 export interface PeriodicElement {
   name: string;
@@ -19,6 +21,16 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {code: 8, name: 'Oxygen'},
   {code: 9, name: 'Fluorine'},
   {code: 10, name: 'Neon'},
+  {code: 11, name: 'Hydrogen2'},
+  {code: 12, name: 'Helium2'},
+  {code: 13, name: 'Lithium2'},
+  {code: 14, name: 'Beryllium2'},
+  {code: 15, name: 'Boron2'},
+  {code: 16, name: 'Carbon2'},
+  {code: 17, name: 'Nitrogen2'},
+  {code: 18, name: 'Oxygen2'},
+  {code: 19, name: 'Fluorine2'},
+  {code: 20, name: 'Neon2'},
 ];
 
 @Component({
@@ -26,14 +38,17 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.scss']
 })
-export class CourseListComponent implements OnInit {
+
+export class CourseListComponent implements AfterViewInit {
   displayedColumns: string[] = ['code', 'name', 'actions'];
-  courses = ELEMENT_DATA;
+  courses = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private dialog: MatDialog,
               private snackBar: MatSnackBar) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit() {
+    this.courses.paginator = this.paginator;
   }
 
   onRemove(){
