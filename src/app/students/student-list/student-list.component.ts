@@ -4,34 +4,17 @@ import {MatPaginator} from "@angular/material/paginator";
 import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogComponent} from "../../dialog/dialog.component";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface PeriodicElement {
+  code:number;
   name: string;
   birthdate: string;
   course: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {birthdate: '01/01/1900', name: 'Hydrogen', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Helium', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Lithium', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Beryllium', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Boron', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Carbon', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Nitrogen', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Oxygen', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Fluorine', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Neon', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Hydrogen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Helium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Lithium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Beryllium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Boron2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Carbon2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Nitrogen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Oxygen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Fluorine2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {birthdate: '01/01/1900', name: 'Neon2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
+
 ];
 
 @Component({
@@ -45,11 +28,32 @@ export class StudentListComponent implements AfterViewInit {
   students = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog,
+  constructor(private http: HttpClient,
+              private dialog: MatDialog,
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
+    this.getData();
     this.students.paginator = this.paginator;
+  }
+
+  public getData() {
+    this.http.get<any[]>('http://localhost:8090/api/students')
+      .subscribe(data => {
+
+          console.log(data);
+          for(let i = 0; i<data.length; i++){
+
+            let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].Nome, birthdate: data[i].DataNascimento.substring(0,10), course: data[i].curso}
+
+            this.students.data.push(todoModel);
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+        },
+        error => {
+          console.log("error");
+        }
+      );
   }
 
   onRemove(){
@@ -71,6 +75,6 @@ export class StudentListComponent implements AfterViewInit {
   }
 
   uploadListener($event: MouseEvent) {
-    
+
   }
 }

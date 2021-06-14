@@ -29,12 +29,14 @@ export class CourseListComponent implements AfterViewInit {
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
+    let ELEMENT_DATA: PeriodicElement[] = [];
+    this.courses = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     this.getData();
     this.courses.paginator = this.paginator;
   }
 
   public getData() {
-    this.http.get<any[]>('http://localhost:8090/api/students')
+    this.http.get<any[]>('http://localhost:8090/api/courses')
       .subscribe(data => {
           console.log(data.length);
           for(let i = 0; i<data.length; i++){
