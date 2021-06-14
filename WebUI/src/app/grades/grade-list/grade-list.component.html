@@ -77,7 +77,7 @@
       <tr mat-row *matRowDef="let grades; columns: displayedColumns;"
       class="main-row"
       [class.expanded-row]="expandedGrade === grades"
-      (click)="expandedGrade = expandedGrade === grades ? null : grades"></tr>
+      (click)="expandedGrade = expandedGrade === grades ? null : grades; onStudents()"></tr>
       <tr mat-row *matRowDef="let row; columns: ['expandedGrade']" class="students-row"></tr>
     </table>
   </div>
