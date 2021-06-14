@@ -1,27 +1,2 @@
-@import "./src/assets/scss/content.scss";
-
-.divTable {
-  margin-top: 16px;
-  height: calc(100vh - 300px);
-  overflow: auto;
-}
-
-table{
-  width: 100%;
-}
-
-.mat-column-code {
-  width: 32px;
-  border-right: 1px solid lightgray;
-  padding-right: 24px;
-  text-align: center;
-}
-
-.mat-column-name {
-  padding-left: 16px;
-}
-
-.mat-column-actions {
-  width: 100px;
-  text-align: center;
-}
+@import "./src/assets/scss/tables";
+@import "./src/assets/scss/content";

@@ -1,0 +1,27 @@
+
+
+.divTable{
+  margin-top: 25px;
+  height: calc(100vh - 330px);
+  overflow: auto;
+}
+
+table{
+  width: 100%;
+}
+
+.mat-column-code {
+  width: 32px;
+  border-right: 1px solid currentColor;
+  padding-right: 24px;
+  text-align: center;
+}
+
+.mat-column-name {
+  padding-left: 16px;
+}
+
+.mat-column-actions {
+  width: 100px;
+  text-align: center;
+}

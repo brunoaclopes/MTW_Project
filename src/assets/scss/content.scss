@@ -1,8 +1,23 @@
+@import "./src/custom-theme";
+@import "~@angular/material/theming";
+
 @import "buttons";
 
 .content {
-  min-height: calc(100vh - 190px);
+  min-height: calc(100vh - 210px);
   border-radius: 10px;
   margin: 10px 10px 10px 20px;
-  padding: 25px;
+  padding: 35px;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  overflow-y: scroll;
+  background: grey;
+  box-shadow: inset 0 0 4px #707070;
+}
+
+::-webkit-scrollbar-thumb {
+  background: mat-color($Project-accent);
+  border-radius: 10px;
 }
