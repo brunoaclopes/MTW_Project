@@ -4,34 +4,14 @@ import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogComponent} from "../../dialog/dialog.component";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface PeriodicElement {
   name: string;
   code: number;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {code: 1, name: 'Hydrogen'},
-  {code: 2, name: 'Helium'},
-  {code: 3, name: 'Lithium'},
-  {code: 4, name: 'Beryllium'},
-  {code: 5, name: 'Boron'},
-  {code: 6, name: 'Carbon'},
-  {code: 7, name: 'Nitrogen'},
-  {code: 8, name: 'Oxygen'},
-  {code: 9, name: 'Fluorine'},
-  {code: 10, name: 'Neon'},
-  {code: 11, name: 'Hydrogen2'},
-  {code: 12, name: 'Helium2'},
-  {code: 13, name: 'Lithium2'},
-  {code: 14, name: 'Beryllium2'},
-  {code: 15, name: 'Boron2'},
-  {code: 16, name: 'Carbon2'},
-  {code: 17, name: 'Nitrogen2'},
-  {code: 18, name: 'Oxygen2'},
-  {code: 19, name: 'Fluorine2'},
-  {code: 20, name: 'Neon2'},
-];
+let ELEMENT_DATA: PeriodicElement[] = [];
 
 @Component({
   selector: 'app-course-list',
@@ -44,11 +24,33 @@ export class CourseListComponent implements AfterViewInit {
   courses = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog,
+  constructor(private http: HttpClient,
+              private dialog: MatDialog,
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
+    this.getData();
     this.courses.paginator = this.paginator;
+  }
+
+  public getData() {
+    this.http.get<any[]>('http://localhost:8090/api/students')
+      .subscribe(data => {
+          console.log(data.length);
+          for(let i = 0; i<data.length; i++){
+
+            let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].Nome}
+
+            this.courses.data.push(todoModel);
+            this.paginator._changePageSize(this.paginator.pageSize);
+          }
+
+          console.log(this.courses.data);
+        },
+        error => {
+          console.log("error");
+        }
+      );
   }
 
   onRemove(){
