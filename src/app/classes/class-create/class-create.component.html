@@ -1,5 +1,5 @@
 <div class="mat-elevation-z8 content">
-  <h1 style="margin: 0;">Add Class</h1>
+  <h1 style="margin: 0;">New Class</h1>
   <div style="display: inline-block; width: 100%">
   <mat-form-field appearance="standard" color="accent">
     <mat-label>Name</mat-label>
@@ -8,7 +8,7 @@
     <br/>
   <mat-form-field appearance="standard" color="accent">
     <mat-label>Course</mat-label>
-    <mat-select [(value)]="value">
+    <mat-select [(value)]="value" required>
       <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
         {{item[labelKey]}}
       </mat-option>
