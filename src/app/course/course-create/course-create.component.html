@@ -1,0 +1,15 @@
+<div class="mat-elevation-z8 content">
+  <h1 style="margin: 0;">Add Course</h1>
+  <mat-form-field appearance="standard" color="accent">
+    <mat-label>Name</mat-label>
+    <input matInput >
+  </mat-form-field>
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddCourse()" style="margin: 5px;">
+      Add Course
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/course']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</div>
