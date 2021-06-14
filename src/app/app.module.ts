@@ -52,6 +52,7 @@ import { ClassCreateComponent } from './classes/class-create/class-create.compon
 import { GradeCreateComponent } from './grades/grade-create/grade-create.component';
 import { StudentCreateComponent } from './students/student-create/student-create.component';
 import { EvaluationcompCreateComponent } from './grades/evaluationcomp-create/evaluationcomp-create.component';
+import { ClassLinkStudentComponent } from './classes/class-link-student/class-link-student.component';
 
 
 @NgModule({
@@ -70,7 +71,8 @@ import { EvaluationcompCreateComponent } from './grades/evaluationcomp-create/ev
     ClassCreateComponent,
     GradeCreateComponent,
     StudentCreateComponent,
-    EvaluationcompCreateComponent
+    EvaluationcompCreateComponent,
+    ClassLinkStudentComponent
   ],
   imports: [
     BrowserModule,
