@@ -1,9 +1,15 @@
 <div class="mat-elevation-z8 content">
   <div style="display: flex">
     <h1 style="margin: 0; text-align: center">Students</h1>
-    <button mat-raised-button color="primary" class="topButton" [routerLink]="['/newstudent']" >
-      Add Student
-    </button>
+    <div style="margin-left: auto; display: flex;">
+      <button mat-stroked-button color="accent" class="topButton" style="margin: 5px;" (click)="uploadListener($event)" disabled>
+        Upload CSV
+      </button>
+      <button mat-raised-button color="primary" class="topButton" style="margin: 5px;" [routerLink]="['/newstudent']" >
+        Add Student
+      </button>
+    </div>
+
   </div>
   <div class="divTable">
     <table mat-table [dataSource]="students" style="background: none">

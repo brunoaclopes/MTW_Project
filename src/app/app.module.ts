@@ -53,6 +53,7 @@ import { GradeCreateComponent } from './grades/grade-create/grade-create.compone
 import { StudentCreateComponent } from './students/student-create/student-create.component';
 import { EvaluationcompCreateComponent } from './grades/evaluationcomp-create/evaluationcomp-create.component';
 import { ClassLinkStudentComponent } from './classes/class-link-student/class-link-student.component';
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -109,7 +110,8 @@ import { ClassLinkStudentComponent } from './classes/class-link-student/class-li
     MatSortModule,
     MatPaginatorModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
