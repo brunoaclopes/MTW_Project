@@ -70,4 +70,7 @@ export class StudentListComponent implements AfterViewInit {
     });
   }
 
+  uploadListener($event: MouseEvent) {
+    
+  }
 }

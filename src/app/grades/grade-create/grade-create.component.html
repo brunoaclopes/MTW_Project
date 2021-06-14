@@ -1,1 +1,31 @@
-<p>grade-create works!</p>
+<form class="mat-elevation-z8 content">
+  <h1 style="margin: 0;">New Grade</h1>
+  <div style="display: inline-block; width: 100%">
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Student</mat-label>
+      <mat-select [(value)]="value" required>
+        <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
+          {{item[labelKey]}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="standard" color="accent" floatLabel="always">
+      <mat-label>Evaluation Component</mat-label>
+      <input matInput [placeholder]="evalComponent" disabled>
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Grade</mat-label>
+      <input matInput type="number" max="20" placeholder="20" required>
+    </mat-form-field>
+  </div>
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddGrade()" style="margin: 5px;">
+      Add Grade
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/grades']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</form>

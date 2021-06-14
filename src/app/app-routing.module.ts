@@ -10,6 +10,7 @@ import {ClassCreateComponent} from "./classes/class-create/class-create.componen
 import {StudentCreateComponent} from "./students/student-create/student-create.component";
 import {GradeCreateComponent} from "./grades/grade-create/grade-create.component";
 import {EvaluationcompCreateComponent} from "./grades/evaluationcomp-create/evaluationcomp-create.component";
+import {ClassLinkStudentComponent} from "./classes/class-link-student/class-link-student.component";
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'newcourse', component: CourseCreateComponent},
   { path: 'class', component: ClassListComponent},
   { path: 'newclass', component: ClassCreateComponent},
+  { path: 'newclass-student', component: ClassLinkStudentComponent},
   { path: 'students', component: StudentListComponent},
   { path: 'newstudent', component: StudentCreateComponent},
   { path: 'grades', component: GradeListComponent},
