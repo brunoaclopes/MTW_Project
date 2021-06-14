@@ -5,6 +5,9 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogComponent} from "../../dialog/dialog.component";
 import {animate, animation, state, style, transition, trigger} from '@angular/animations';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {Observable, ReplaySubject} from "rxjs";
+import {DataSource} from "@angular/cdk/collections";
 
 export interface PeriodicElement {
   name: string;
@@ -12,43 +15,14 @@ export interface PeriodicElement {
   subject: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-  {code: 1, name: 'Hydrogen', subject: 'Multimedia e Tecnologias Web'},
-  {code: 2, name: 'Helium', subject: 'Multimedia e Tecnologias Web'},
-  {code: 3, name: 'Lithium', subject: 'Multimedia e Tecnologias Web'},
-  {code: 4, name: 'Beryllium', subject: 'Multimedia e Tecnologias Web'},
-  {code: 5, name: 'Boron', subject: 'Multimedia e Tecnologias Web'},
-  {code: 6, name: 'Carbon', subject: 'Multimedia e Tecnologias Web'},
-  {code: 7, name: 'Nitrogen', subject: 'Multimedia e Tecnologias Web'},
-  {code: 8, name: 'Oxygen', subject: 'Multimedia e Tecnologias Web'},
-  {code: 9, name: 'Fluorine', subject: 'Multimedia e Tecnologias Web'},
-  {code: 10, name: 'Neon', subject: 'Multimedia e Tecnologias Web'},
-  {code: 11, name: 'Hydrogen2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 12, name: 'Helium2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 13, name: 'Lithium2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 14, name: 'Beryllium2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 15, name: 'Boron2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 16, name: 'Carbon2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 17, name: 'Nitrogen2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 18, name: 'Oxygen2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 19, name: 'Fluorine2', subject: 'Multimedia e Tecnologias Web'},
-  {code: 20, name: 'Neon2', subject: 'Multimedia e Tecnologias Web'},
-];
+let ELEMENT_DATA: PeriodicElement[] = [];
 
 export interface StudentGrades {
   name: string;
   grade: string;
 }
 
-const STUDENT_DATA: StudentGrades[] = [
-  {name: 'Hydrogen', grade: '20'},
-  {name: 'Helium', grade: '20'},
-  {name: 'Lithium', grade: '20'},
-  {name: 'Beryllium', grade: '20'},
-  {name: 'Boron', grade: '20'},
-  {name: 'Carbon', grade: '20'},
-  {name: 'Nitrogen', grade: '20'}
-];
+let STUDENT_DATA: StudentGrades[] = [];
 
 
 @Component({
@@ -69,16 +43,60 @@ export class GradeListComponent implements AfterViewInit {
   displayedColumns: string[] = ['code', 'name', 'subject', 'actions'];
   displayedStudentsColumns: string[] = ['name', 'grade', 'actions'];
   grades = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  students = new MatTableDataSource<StudentGrades>(STUDENT_DATA);
+  students = new StudentDataSource(STUDENT_DATA);
   expandedGrade!: PeriodicElement | null;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog,
+  constructor(private http: HttpClient,
+              private dialog: MatDialog,
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
+    let ELEMENT_DATA: PeriodicElement[] = [];
+    this.grades = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+    this.getData();
     this.grades.paginator = this.paginator;
+  }
+
+  public getData() {
+
+    this.http.get<any[]>('http://localhost:8090/api/evaluations')
+      .subscribe(data => {
+          console.log(data);
+          for(let i = 0; i<data.length; i++){
+
+            let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].comp, subject: data[i].disciplina}
+
+            this.grades.data.push(todoModel);
+            this.paginator._changePageSize(this.paginator.pageSize);
+
+          }
+        },
+        error => {
+          console.log("error");
+        }
+      );
+  }
+
+  onStudents(){
+    let finalModel: StudentGrades[] = [];
+    this.students.setData(finalModel);
+    this.http.get<any[]>('http://localhost:8090/api/studentsEvaluations')
+      .subscribe(data => {
+          console.log(data);
+          for(let i = 0; i<data.length; i++){
+            if(this.expandedGrade?.code === data[i].AvaliacaoId){
+              let todoModel: StudentGrades = {name: data[i].Nome, grade: data[i].Nota};
+              finalModel.push(todoModel);
+              this.students.setData(finalModel);
+            }
+          }
+        },
+        error => {
+          console.log("error");
+        }
+      );
   }
 
   onRemove(){
@@ -99,4 +117,19 @@ export class GradeListComponent implements AfterViewInit {
     });
   }
 
+}
+
+class StudentDataSource extends DataSource<StudentGrades> {
+  private _dataStream = new ReplaySubject<StudentGrades[]>();
+  constructor(initialData: StudentGrades[]) {
+    super();
+    this.setData(initialData);
+  }
+  connect(): Observable<StudentGrades[]> {
+    return this._dataStream;
+  }
+  disconnect() {}
+  setData(data: StudentGrades[]) {
+    this._dataStream.next(data);
+  }
 }
