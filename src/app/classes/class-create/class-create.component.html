@@ -1,0 +1,31 @@
+<div class="mat-elevation-z8 content">
+  <h1 style="margin: 0;">Add Class</h1>
+  <div style="display: inline-block; width: 100%">
+  <mat-form-field appearance="standard" color="accent">
+    <mat-label>Name</mat-label>
+    <input matInput required>
+  </mat-form-field>
+    <br/>
+  <mat-form-field appearance="standard" color="accent">
+    <mat-label>Course</mat-label>
+    <mat-select [(value)]="value">
+      <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
+        {{item[labelKey]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+    <br/>
+  <mat-form-field appearance="standard" color="accent">
+    <mat-label>Year</mat-label>
+    <input matInput required>
+  </mat-form-field>
+  </div>
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddClass()" style="margin: 5px;">
+      Add Class
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/course']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</div>
