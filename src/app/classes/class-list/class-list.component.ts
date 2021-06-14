@@ -9,29 +9,30 @@ export interface PeriodicElement {
   name: string;
   code: number;
   course: string;
+  year: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {code: 1, name: 'Hydrogen', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 2, name: 'Helium', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 3, name: 'Lithium', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 4, name: 'Beryllium', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 5, name: 'Boron', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 6, name: 'Carbon', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 7, name: 'Nitrogen', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 8, name: 'Oxygen', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 9, name: 'Fluorine', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 10, name: 'Neon', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 11, name: 'Hydrogen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 12, name: 'Helium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 13, name: 'Lithium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 14, name: 'Beryllium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 15, name: 'Boron2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 16, name: 'Carbon2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 17, name: 'Nitrogen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 18, name: 'Oxygen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 19, name: 'Fluorine2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
-  {code: 20, name: 'Neon2', course: 'Licenciatura em Engenharia de Sistemas Informaticos'},
+  {code: 1, name: 'Hydrogen', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 2, name: 'Helium', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 3, name: 'Lithium', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 4, name: 'Beryllium', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 5, name: 'Boron', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 6, name: 'Carbon', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 7, name: 'Nitrogen', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 8, name: 'Oxygen', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 9, name: 'Fluorine', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 10, name: 'Neon', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 11, name: 'Hydrogen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 12, name: 'Helium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 13, name: 'Lithium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 14, name: 'Beryllium2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 15, name: 'Boron2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 16, name: 'Carbon2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 17, name: 'Nitrogen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 18, name: 'Oxygen2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 19, name: 'Fluorine2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
+  {code: 20, name: 'Neon2', course: 'Licenciatura em Engenharia de Sistemas Informaticos', year: '2020/2021'},
 ];
 
 @Component({
@@ -41,7 +42,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 
 export class ClassListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['code', 'name', 'course', 'actions'];
+  displayedColumns: string[] = ['code', 'name', 'course', 'year', 'actions'];
   courses = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
