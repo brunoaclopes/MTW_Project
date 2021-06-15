@@ -33,6 +33,8 @@ export class StudentListComponent implements AfterViewInit {
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
+    let ELEMENT_DATA: PeriodicElement[] = [];
+    this.students = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     this.getData();
     this.students.paginator = this.paginator;
   }
@@ -47,7 +49,7 @@ export class StudentListComponent implements AfterViewInit {
             let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].Nome, birthdate: data[i].DataNascimento.substring(0,10), course: data[i].curso}
 
             this.students.data.push(todoModel);
-            this.paginator._changePageSize(this.paginator.pageSize);
+            this.students.paginator = this.paginator;
           }
         },
         error => {

@@ -1,4 +1,3 @@
-
 const config = require('../dbconfig');
 const sql = require('mssql');
 
@@ -47,6 +46,18 @@ async function addStudentClass(studentLesson) {
     }
 }
 
+async function editStudent(student, id) {
+    try {
+        let pool = await sql.connect(config);
+        let insertStudent = await pool.request()
+            .query("UPDATE Aluno SET Nome = '" + student.Nome + "', DataNascimento = '" + student.DataNascimento + "' WHERE Id=" + id);
+        return insertStudent.recordsets;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 async function removeStudentClass(studentId, turmaId, cursoId, anoLetivoId) {
     try {
         let pool = await sql.connect(config);
@@ -66,5 +77,6 @@ module.exports = {
     getStudent : getStudent,
     addStudent : addStudent,
     addStudentClass : addStudentClass,
+    editStudent: editStudent,
     removeStudentClass : removeStudentClass
 }
