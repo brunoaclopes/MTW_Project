@@ -5,7 +5,7 @@ import {MatDialog} from "@angular/material/dialog";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {DialogComponent} from "../../dialog/dialog.component";
 import {animate, animation, state, style, transition, trigger} from '@angular/animations';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Observable, ReplaySubject} from "rxjs";
 import {DataSource} from "@angular/cdk/collections";
 
@@ -19,6 +19,7 @@ let ELEMENT_DATA: PeriodicElement[] = [];
 
 export interface StudentGrades {
   name: string;
+  code: number;
   grade: string;
 }
 
@@ -69,7 +70,7 @@ export class GradeListComponent implements AfterViewInit {
             let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].comp, subject: data[i].disciplina}
 
             this.grades.data.push(todoModel);
-            this.paginator._changePageSize(this.paginator.pageSize);
+            this.grades.paginator = this.paginator;
 
           }
         },
@@ -87,7 +88,7 @@ export class GradeListComponent implements AfterViewInit {
           console.log(data);
           for(let i = 0; i<data.length; i++){
             if(this.expandedGrade?.code === data[i].AvaliacaoId){
-              let todoModel: StudentGrades = {name: data[i].Nome, grade: data[i].Nota};
+              let todoModel: StudentGrades = {code: data[i].AlunoId, name: data[i].Nome, grade: data[i].Nota};
               finalModel.push(todoModel);
               this.students.setData(finalModel);
             }
@@ -99,7 +100,33 @@ export class GradeListComponent implements AfterViewInit {
       );
   }
 
-  onRemove(){
+  onRemoveGrade(grade: number, student:number){
+    const dialogRef = this.dialog.open(DialogComponent,{
+      data:{
+        message: 'This Grade will be Deleted!'
+      },
+    });
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.http.delete("http://localhost:8090/api/studentEvaluation/"+student+"/"+grade).subscribe(
+          (res) => {
+            this.snackBar.open('Grade deleted with success!', 'Close', {
+              duration: 2000,
+            })
+          },
+          (err) => {
+            this.snackBar.open('There was an error deleting the Grade!', 'Close', {
+              duration: 2000,
+            });
+            console.error('There was an error!', err);
+          }
+        );
+      }
+      this.onStudents();
+    });
+  }
+
+  onRemoveComponent(){
     const dialogRef = this.dialog.open(DialogComponent,{
       data:{
         message: 'The Course was Deleted!'
