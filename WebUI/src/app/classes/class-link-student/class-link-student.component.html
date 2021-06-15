@@ -1,0 +1,22 @@
+<div class="mat-elevation-z8 content">
+  <h1 style="margin: 0;">Add Student to a Class</h1>
+  <div style="display: inline-block; width: 100%">
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Student</mat-label>
+      <mat-select [(ngModel)]="form.StudentId">
+        <mat-option *ngFor="let student of students" [value]="student.value">
+          {{student.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+  </div>
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddStudent()" style="margin: 5px;">
+      Add Student
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/class']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</div>

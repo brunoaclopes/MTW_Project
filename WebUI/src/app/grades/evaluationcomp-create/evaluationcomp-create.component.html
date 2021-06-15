@@ -1,0 +1,26 @@
+<form class="mat-elevation-z8 content">
+  <h1 style="margin: 0;">New Evaluation Component</h1>
+  <div style="display: inline-block; width: 100%">
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Name</mat-label>
+      <input matInput required [(ngModel)]="form.Nome" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Subjects</mat-label>
+      <mat-select [(ngModel)]="form.EvaluationId" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+          {{subject.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddEvaluationComponent()" style="margin: 5px;">
+      Add Evaluation Component
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/grades']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</form>

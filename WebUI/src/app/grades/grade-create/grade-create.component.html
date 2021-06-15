@@ -1,0 +1,26 @@
+<form class="mat-elevation-z8 content">
+  <h1 style="margin: 0;">New Grade</h1>
+  <div style="display: inline-block; width: 100%">
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Student</mat-label>
+      <mat-select [(ngModel)]="form.StudentId" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let student of students" [value]="student.value">
+          {{student.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Grade</mat-label>
+      <input matInput type="number" max="20" placeholder="20" required  [(ngModel)]="form.Nota" [ngModelOptions]="{standalone: true}">
+    </mat-form-field>
+  </div>
+  <div style="display: flex">
+    <button mat-raised-button color="primary" (click)="onAddGrade()" style="margin: 5px;">
+      Add Grade
+    </button>
+    <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/grades']" style="margin: 5px">
+      Cancel
+    </button>
+  </div>
+</form>
