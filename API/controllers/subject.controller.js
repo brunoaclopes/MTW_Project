@@ -5,44 +5,42 @@ const sql = require('mssql');
 async function getSubjects(){
     try {
         let pool = await sql.connect(config);
-        let courses = await pool.request().query("select * from Subjects");
-        return courses.recordsets;
+        let subjects = await pool.request().query("select * from Subjects");
+        return subjects.recordsets;
     } catch (error) {
         console.log(error);
     }
 }
 
-async function getSubject(courseId){
+async function getSubject(subjectId){
     try {
         let pool = await sql.connect(config);
-        let course = await pool.request().input('input_parameter', sql.Int, courseId)
+        let subject = await pool.request().input('input_parameter', sql.Int, subjectId)
             .query("select * from Disciplina where Id = @input_parameter");
-        return course.recordsets;
+        return subject.recordsets;
     } catch (error) {
         console.log(error);
     }
 }
 
-async function addSubject(course) {
+async function addSubject(subject) {
     try {
         let pool = await sql.connect(config);
-        const teste = "INSERT INTO Curso VALUES ('" + course.Nome + "')";
-        let insertCourse = await pool.request()
-            .query(teste);
-        return insertCourse.recordsets;
+        let insertClass = await pool.request()
+            .query("INSERT INTO Disciplina VALUES ('" + subject.Nome + "', " + subject.CourseId + ")");
+        return insertClass.recordsets;
     }
     catch (err) {
         console.log(err);
     }
 }
 
-async function editSubject(course, id) {
+async function editSubject(subject, id) {
     try {
         let pool = await sql.connect(config);
-        const teste = "UPDATE Curso SET NOME = '" + course.Nome + "' WHERE Id=" + id;
-        let insertCourse = await pool.request()
-            .query(teste);
-        return insertCourse.recordsets;
+        let insertSubject = await pool.request()
+            .query("UPDATE Disciplina SET Nome = '" + subject.Nome + "', CursoId = " + subject.CourseId + " WHERE Id=" + id);
+        return insertSubject.recordsets;
     }
     catch (err) {
         console.log(err);

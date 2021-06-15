@@ -15,15 +15,15 @@ module.exports = function(router){
     })
 
     router.route('/subject').post((request,response)=>{
-        let course = {...request.body}
-        dboperations.addSubject(course).then(result => {
+        let subject = {...request.body}
+        dboperations.addSubject(subject).then(result => {
             response.status(201).json(result);
         })
     })
 
     router.route('/subject/:id').put((request,response)=>{
-        let course = {...request.body}
-        dboperations.editSubject(course, request.params.id).then(result => {
+        let subject = {...request.body}
+        dboperations.editSubject(subject, request.params.id).then(result => {
             response.status(201).json(result);
         })
     })

@@ -55,6 +55,7 @@ import { EvaluationcompCreateComponent } from './grades/evaluationcomp-create/ev
 import { ClassLinkStudentComponent } from './classes/class-link-student/class-link-student.component';
 import {FormsModule} from "@angular/forms";
 import { SubjectListComponent } from './subjects/subject-list/subject-list.component';
+import { SubjectCreateComponent } from './subjects/subject-create/subject-create.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { SubjectListComponent } from './subjects/subject-list/subject-list.compo
     StudentCreateComponent,
     EvaluationcompCreateComponent,
     ClassLinkStudentComponent,
-    SubjectListComponent
+    SubjectListComponent,
+    SubjectCreateComponent
   ],
   imports: [
     BrowserModule,
