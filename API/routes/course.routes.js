@@ -20,4 +20,11 @@ module.exports = function(router){
             response.status(201).json(result);
         })
     })
+
+    router.route('/course/:id').put((request,response)=>{
+        let course = {...request.body}
+        dboperations.editCourse(course, request.params.id).then(result => {
+            response.status(201).json(result);
+        })
+    })
 }

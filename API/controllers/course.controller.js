@@ -35,9 +35,23 @@ async function addCourse(course) {
     }
 }
 
+async function editCourse(course, id) {
+    try {
+        let pool = await sql.connect(config);
+        const teste = "UPDATE Curso SET NOME = '" + course.Nome + "' WHERE Id=" + id;
+        let insertCourse = await pool.request()
+            .query(teste);
+        return insertCourse.recordsets;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 
 module.exports = {
     getCourses : getCourses,
     getCourse : getCourse,
-    addCourse : addCourse
+    addCourse : addCourse,
+    editCourse : editCourse
 }
