@@ -24,6 +24,7 @@ const routes: Routes = [
   { path: 'newclass-student', component: ClassLinkStudentComponent},
   { path: 'students', component: StudentListComponent},
   { path: 'newstudent', component: StudentCreateComponent},
+  { path: 'newstudent/:id', component: StudentCreateComponent},
   { path: 'grades', component: GradeListComponent},
   { path: 'newgrade', component: GradeCreateComponent},
   { path: 'newcomponent', component: EvaluationcompCreateComponent}

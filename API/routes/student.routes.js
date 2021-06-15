@@ -28,6 +28,13 @@ module.exports = function(router){
         })
     })
 
+    router.route('/student/:id').put((request,response)=>{
+        let student = {...request.body}
+        dboperations.editStudent(student, request.params.id).then(result => {
+            response.status(201).json(result);
+        })
+    })
+
     router.route('/studentClass/:studentId/:turmaId/:cursoId/:anoLetivoId').delete((request,response)=>{
         dboperations.removeStudentClass(request.params.studentId, request.params.turmaId, request.params.cursoId, request.params.anoLetivoId).then(result => {
             response.status(204);
