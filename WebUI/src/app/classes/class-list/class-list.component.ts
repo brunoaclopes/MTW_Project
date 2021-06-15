@@ -31,6 +31,8 @@ export class ClassListComponent implements AfterViewInit {
               private snackBar: MatSnackBar) { }
 
   ngAfterViewInit() {
+    let ELEMENT_DATA: PeriodicElement[] = [];
+    this.courses = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     this.getData();
     this.courses.paginator = this.paginator;
   }
@@ -44,7 +46,7 @@ export class ClassListComponent implements AfterViewInit {
             let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].turma, course: data[i].curso, year: data[i].Anos}
 
             this.courses.data.push(todoModel);
-            this.paginator._changePageSize(this.paginator.pageSize);
+            this.courses.paginator = this.paginator;
           }
 
           console.log(this.courses.data);
