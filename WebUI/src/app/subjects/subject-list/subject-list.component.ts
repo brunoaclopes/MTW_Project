@@ -7,25 +7,21 @@ import {DialogComponent} from "../../dialog/dialog.component";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 export interface PeriodicElement {
-  code:number;
   name: string;
-  birthdate: string;
+  code: number;
   course: string;
 }
 
-const ELEMENT_DATA: PeriodicElement[] = [
-
-];
+const ELEMENT_DATA: PeriodicElement[] = [];
 
 @Component({
-  selector: 'app-student-list',
-  templateUrl: './student-list.component.html',
-  styleUrls: ['./student-list.component.scss']
+  selector: 'app-subject-list',
+  templateUrl: './subject-list.component.html',
+  styleUrls: ['./subject-list.component.scss']
 })
-
-export class StudentListComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'birthdate', 'course', 'actions'];
-  students = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+export class SubjectListComponent implements AfterViewInit {
+  displayedColumns: string[] = ['code', 'name', 'course', 'actions'];
+  subjects = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private http: HttpClient,
@@ -34,23 +30,24 @@ export class StudentListComponent implements AfterViewInit {
 
   ngAfterViewInit() {
     let ELEMENT_DATA: PeriodicElement[] = [];
-    this.students = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+    this.subjects = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
     this.getData();
-    this.students.paginator = this.paginator;
+    this.subjects.paginator = this.paginator;
   }
 
   public getData() {
-    this.http.get<any[]>('http://localhost:8090/api/students')
+    this.http.get<any[]>('http://localhost:8090/api/subjects')
       .subscribe(data => {
-
-          console.log(data);
+          console.log(data.length);
           for(let i = 0; i<data.length; i++){
 
-            let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].Nome, birthdate: data[i].DataNascimento.substring(0,10), course: data[i].curso}
+            let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].disciplina, course: data[i].curso}
 
-            this.students.data.push(todoModel);
-            this.students.paginator = this.paginator;
+            this.subjects.data.push(todoModel);
+            this.subjects.paginator = this.paginator;
           }
+
+          console.log(this.subjects.data);
         },
         error => {
           console.log("error");
@@ -76,7 +73,4 @@ export class StudentListComponent implements AfterViewInit {
     });
   }
 
-  uploadListener($event: MouseEvent) {
-
-  }
 }

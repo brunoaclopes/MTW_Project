@@ -25,8 +25,22 @@ async function getClass(classId){
 async function addClass(Class) {
     try {
         let pool = await sql.connect(config);
+        let teste = "INSERT INTO Turma VALUES (" + Class.YearId + ", " + Class.CourseId + ", '" + Class.Nome + "')"
         let insertClass = await pool.request()
-            .query("INSERT INTO Turma VALUES ('" + Class.Nome + "')");
+            .query(teste);
+        return insertClass.recordsets;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+async function editClass(Class, id) {
+    try {
+        let pool = await sql.connect(config);
+        let teste = "UPDATE Turma SET AnoLetivoId= " + Class.YearId + ", CursoId=" + Class.CourseId + ", Nome='" + Class.Nome + "' WHERE Id=" + id;
+        let insertClass = await pool.request()
+            .query(teste);
         return insertClass.recordsets;
     }
     catch (err) {
@@ -38,5 +52,6 @@ async function addClass(Class) {
 module.exports = {
     getClasses : getClasses,
     getClass : getClass,
-    addClass : addClass
+    addClass : addClass,
+    editClass : editClass
 }

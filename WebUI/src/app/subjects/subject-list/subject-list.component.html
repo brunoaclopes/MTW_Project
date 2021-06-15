@@ -1,12 +1,12 @@
 <div class="mat-elevation-z8 content">
   <div style="display: flex">
-    <h1 style="margin: 0; text-align: center">Classes</h1>
-    <button mat-raised-button color="primary" class="topButton" [routerLink]="['/newclass']" >
-      Add Class
+    <h1 style="margin: 0; text-align: center">Subjects</h1>
+    <button mat-raised-button color="primary" class="topButton" [routerLink]="['/newclass']" disabled>
+      Add Subject
     </button>
   </div>
   <div class="divTable">
-    <table mat-table [dataSource]="courses" style="background: none">
+    <table mat-table [dataSource]="subjects" style="background: none">
       <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> Code </th>
         <td mat-cell *matCellDef="let element"> {{element.code}} </td>
@@ -22,18 +22,10 @@
         <td mat-cell *matCellDef="let element"> {{element.course}} </td>
       </ng-container>
 
-      <ng-container matColumnDef="year">
-        <th mat-header-cell *matHeaderCellDef> Year </th>
-        <td mat-cell *matCellDef="let element"> {{element.year}} </td>
-      </ng-container>
-
       <ng-container matColumnDef="actions">
         <th mat-header-cell  *matHeaderCellDef > Actions </th>
         <td mat-cell *matCellDef="let element" >
-          <button mat-icon-button [routerLink]="['/newclass-student', element.code]">
-            <mat-icon>add</mat-icon>
-          </button>
-          <button mat-icon-button [routerLink]="['/newclass', element.code]">
+          <button mat-icon-button [routerLink]="['/', element.code]" disabled>
             <mat-icon>edit</mat-icon>
           </button>
           <button mat-icon-button color="warn" disabled>

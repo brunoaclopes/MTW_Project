@@ -2,27 +2,28 @@
 const config = require('../dbconfig');
 const sql = require('mssql');
 
-async function getCourses(){
+async function getSubjects(){
     try {
         let pool = await sql.connect(config);
-        let courses = await pool.request().query("select * from Curso");
+        let courses = await pool.request().query("select * from Subjects");
         return courses.recordsets;
     } catch (error) {
         console.log(error);
     }
 }
 
-async function getCourse(courseId){
+async function getSubject(courseId){
     try {
         let pool = await sql.connect(config);
-        let course = await pool.request().input('input_parameter', sql.Int, courseId).query("select * from Curso where Id = @input_parameter");
+        let course = await pool.request().input('input_parameter', sql.Int, courseId)
+            .query("select * from Disciplina where Id = @input_parameter");
         return course.recordsets;
     } catch (error) {
         console.log(error);
     }
 }
 
-async function addCourse(course) {
+async function addSubject(course) {
     try {
         let pool = await sql.connect(config);
         const teste = "INSERT INTO Curso VALUES ('" + course.Nome + "')";
@@ -35,7 +36,7 @@ async function addCourse(course) {
     }
 }
 
-async function editCourse(course, id) {
+async function editSubject(course, id) {
     try {
         let pool = await sql.connect(config);
         const teste = "UPDATE Curso SET NOME = '" + course.Nome + "' WHERE Id=" + id;
@@ -50,8 +51,8 @@ async function editCourse(course, id) {
 
 
 module.exports = {
-    getCourses : getCourses,
-    getCourse : getCourse,
-    addCourse : addCourse,
-    editCourse : editCourse
+    getSubjects : getSubjects,
+    getSubject : getSubject,
+    addSubject : addSubject,
+    editSubject : editSubject
 }

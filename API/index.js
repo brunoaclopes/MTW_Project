@@ -21,6 +21,7 @@ require('./routes/course.routes')(router);
 require('./routes/evaluation.routes')(router);
 require('./routes/lesson.routes')(router);
 require('./routes/schoolYear.routes')(router);
+require('./routes/subject.route')(router);
 
 
 var port = process.env.PORT || 8090;
