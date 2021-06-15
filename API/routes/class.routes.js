@@ -20,4 +20,11 @@ module.exports = function(router){
             response.status(201).json(result);
         })
     })
+
+    router.route('/class/:id').put((request,response)=>{
+        let Class = {...request.body}
+        dboperations.editClass(Class, request.params.id).then(result => {
+            response.status(201).json(result);
+        })
+    })
 }

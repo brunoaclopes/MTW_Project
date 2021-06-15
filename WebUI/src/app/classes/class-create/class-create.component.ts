@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
+import {subscribeOn} from "rxjs/operators";
 
 interface List {
   value: string;
@@ -15,7 +16,8 @@ interface List {
 
 export class ClassCreateComponent implements OnInit{
 
-  constructor(private http: HttpClient,
+  constructor(private route: ActivatedRoute,
+              private http: HttpClient,
               private router: Router) { }
 
   courses: List[] = [];
@@ -23,16 +25,20 @@ export class ClassCreateComponent implements OnInit{
   form = new Class('', 0, 0);
 
   onAddClass(){
-    console.log(this.form);
-
-    this.http.post<Class>("http://localhost:8090/api/class", this.form).subscribe(value => {console.log(value)});
-
-    this.router.navigate(['/class'])
+    let id = this.route.snapshot.paramMap.get('id');
+    if(id===null)
+      this.http.post<Class>("http://localhost:8090/api/class", this.form).subscribe(value => {console.log(value)});
+    else{
+      this.http.put<Class>("http://localhost:8090/api/class/" + id, this.form).subscribe(value => {console.log(value)})
+    }
+      this.router.navigate(['/class'])
   }
 
 
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
+
     this.http.get<any[]>('http://localhost:8090/api/courses')
       .subscribe(data => {
           for(let i = 0; i<data.length; i++){
@@ -56,6 +62,22 @@ export class ClassCreateComponent implements OnInit{
           console.log("error");
         }
       );
+
+    if(id!==null){
+      this.http.get<any[]>('http://localhost:8090/api/class/' + id)
+        .subscribe(data => {
+            for(let i = 0; i<data.length; i++){
+              console.log(data);
+              this.form.CourseId = data[0].CursoId;
+              this.form.YearId = data[0].AnoLetivoId;
+              this.form.Nome = data[0].Nome;
+            }
+          },
+          error => {
+            console.log("error");
+          }
+        );
+    }
   }
 
 }

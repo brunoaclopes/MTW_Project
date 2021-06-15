@@ -35,9 +35,23 @@ async function addClass(Class) {
     }
 }
 
+async function editClass(Class, id) {
+    try {
+        let pool = await sql.connect(config);
+        let teste = "UPDATE Turma SET AnoLetivoId= " + Class.YearId + ", CursoId=" + Class.CourseId + ", Nome='" + Class.Nome + "' WHERE Id=" + id;
+        let insertClass = await pool.request()
+            .query(teste);
+        return insertClass.recordsets;
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
 
 module.exports = {
     getClasses : getClasses,
     getClass : getClass,
-    addClass : addClass
+    addClass : addClass,
+    editClass : editClass
 }
