@@ -33,16 +33,16 @@ module.exports = function(router){
         })
     })
 
-    router.route('/studentEvaluation').post((request,response)=>{
+    router.route('/studentEvaluation/:id').post((request,response)=>{
         let evaluation = {...request.body}
-        dboperations.addStudentEvaluation(evaluation).then(result => {
+        dboperations.addStudentEvaluation(evaluation, request.params.id).then(result => {
             response.status(201).json(result);
         })
     })
 
-    router.route('/evaluation').put((request,response)=>{
+    router.route('/evaluation/:id').put((request,response)=>{
         let evaluation = {...request.body}
-        dboperations.editEvaluation(evaluation).then(result => {
+        dboperations.editEvaluation(evaluation, request.params.id).then(result => {
             response.status(200).json(result);
         })
     })

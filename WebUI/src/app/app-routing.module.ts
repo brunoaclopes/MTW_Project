@@ -26,8 +26,9 @@ const routes: Routes = [
   { path: 'newstudent', component: StudentCreateComponent},
   { path: 'newstudent/:id', component: StudentCreateComponent},
   { path: 'grades', component: GradeListComponent},
-  { path: 'newgrade', component: GradeCreateComponent},
-  { path: 'newcomponent', component: EvaluationcompCreateComponent}
+  { path: 'newgrade/:id', component: GradeCreateComponent},
+  { path: 'newcomponent', component: EvaluationcompCreateComponent},
+  { path: 'newcomponent/:id', component: EvaluationcompCreateComponent}
 ]
 
 @NgModule({

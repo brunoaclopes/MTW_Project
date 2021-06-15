@@ -1,9 +1,9 @@
-<div class="mat-elevation-z8 content">
+<form class="mat-elevation-z8 content">
   <h1 style="margin: 0;">New Evaluation Component</h1>
   <div style="display: inline-block; width: 100%">
     <mat-form-field appearance="standard" color="accent">
       <mat-label>Name</mat-label>
-      <input matInput required>
+      <input matInput required [(ngModel)]="form.Nome">
     </mat-form-field>
     <br/>
     <mat-form-field appearance="standard" color="accent">
@@ -23,4 +23,4 @@
       Cancel
     </button>
   </div>
-</div>
+</form>
