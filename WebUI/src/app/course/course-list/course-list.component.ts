@@ -44,7 +44,7 @@ export class CourseListComponent implements AfterViewInit {
             let todoModel: PeriodicElement = {code: data[i].Id, name: data[i].Nome}
 
             this.courses.data.push(todoModel);
-            this.paginator._changePageSize(this.paginator.pageSize);
+            this.courses.paginator = this.paginator;
           }
 
           console.log(this.courses.data);
