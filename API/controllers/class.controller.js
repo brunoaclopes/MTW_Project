@@ -25,8 +25,9 @@ async function getClass(classId){
 async function addClass(Class) {
     try {
         let pool = await sql.connect(config);
+        let teste = "INSERT INTO Turma VALUES (" + Class.YearId + ", " + Class.CourseId + ", '" + Class.Nome + "')"
         let insertClass = await pool.request()
-            .query("INSERT INTO Turma VALUES ('" + Class.Nome + "')");
+            .query(teste);
         return insertClass.recordsets;
     }
     catch (err) {

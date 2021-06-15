@@ -1,28 +1,32 @@
 <div class="mat-elevation-z8 content">
-  <h1 style="margin: 0;">New Class</h1>
+  <h1 style="margin: 0;">Class</h1>
   <div style="display: inline-block; width: 100%">
   <mat-form-field appearance="standard" color="accent">
     <mat-label>Name</mat-label>
-    <input matInput required>
+    <input matInput required [(ngModel)]="form.Nome">
   </mat-form-field>
     <br/>
   <mat-form-field appearance="standard" color="accent">
     <mat-label>Course</mat-label>
-    <mat-select [(value)]="value" required>
-      <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
-        {{item[labelKey]}}
+    <mat-select [(ngModel)]="form.CourseId">
+      <mat-option *ngFor="let course of courses" [value]="course.value">
+        {{course.viewValue}}
       </mat-option>
     </mat-select>
   </mat-form-field>
     <br/>
-  <mat-form-field appearance="standard" color="accent">
-    <mat-label>Year</mat-label>
-    <input matInput required>
-  </mat-form-field>
+    <mat-form-field appearance="standard" color="accent">
+      <mat-label>Year</mat-label>
+      <mat-select [(ngModel)]="form.YearId">
+        <mat-option *ngFor="let year of years" [value]="year.value">
+          {{year.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
   </div>
   <div style="display: flex">
     <button mat-raised-button color="primary" (click)="onAddClass()" style="margin: 5px;">
-      Add Class
+      Add/Edit Class
     </button>
     <button mat-stroked-button color="accent" class="mat-elevation-z1" [routerLink]="['/class']" style="margin: 5px">
       Cancel
