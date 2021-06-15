@@ -5,7 +5,7 @@ const sql = require('mssql');
 async function getSubjects(){
     try {
         let pool = await sql.connect(config);
-        let courses = await pool.request().query("select * from Disciplina");
+        let courses = await pool.request().query("select * from Subjects");
         return courses.recordsets;
     } catch (error) {
         console.log(error);

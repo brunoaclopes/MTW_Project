@@ -11,6 +11,7 @@ import {StudentCreateComponent} from "./students/student-create/student-create.c
 import {GradeCreateComponent} from "./grades/grade-create/grade-create.component";
 import {EvaluationcompCreateComponent} from "./grades/evaluationcomp-create/evaluationcomp-create.component";
 import {ClassLinkStudentComponent} from "./classes/class-link-student/class-link-student.component";
+import {SubjectListComponent} from "./subjects/subject-list/subject-list.component";
 
 
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'newstudent/:id', component: StudentCreateComponent},
   { path: 'grades', component: GradeListComponent},
   { path: 'newgrade', component: GradeCreateComponent},
-  { path: 'newcomponent', component: EvaluationcompCreateComponent}
+  { path: 'newcomponent', component: EvaluationcompCreateComponent},
+  { path: 'subjects', component: SubjectListComponent}
 ]
 
 @NgModule({
