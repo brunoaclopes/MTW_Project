@@ -3,17 +3,13 @@
   <div style="display: inline-block; width: 100%">
     <mat-form-field appearance="standard" color="accent">
       <mat-label>Student</mat-label>
-      <mat-select [(value)]="value" required>
-        <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
-          {{item[labelKey]}}
+      <mat-select [(ngModel)]="form.StudentId">
+        <mat-option *ngFor="let student of students" [value]="student.value">
+          {{student.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <br/>
-    <mat-form-field appearance="standard" color="accent" floatLabel="always">
-      <mat-label>Class</mat-label>
-      <input matInput [placeholder]="class" disabled>
-    </mat-form-field>
   </div>
   <div style="display: flex">
     <button mat-raised-button color="primary" (click)="onAddStudent()" style="margin: 5px;">

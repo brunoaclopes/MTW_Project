@@ -38,8 +38,8 @@ async function addStudentClass(studentLesson) {
     try {
         let pool = await sql.connect(config);
         let insertStudent = await pool.request()
-            .query("INSERT INTO AlunoTurmaCursoAnoLetivo VALUES (" + studentLesson.AnoLetivoId + ", " +
-                studentLesson.CursoId + ", " + studentLesson.TurmaId + ", " + studentLesson.AlunoId + ")");
+            .query("INSERT INTO AlunoTurma VALUES (" + studentLesson.StudentId +
+                ", " + studentLesson.ClassId + ")");
         return insertStudent.recordsets;
     }
     catch (err) {
