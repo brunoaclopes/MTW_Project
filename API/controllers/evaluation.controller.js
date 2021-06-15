@@ -108,12 +108,12 @@ async function removeEvaluation(evaluationId) {
     }
 }
 
-async function removeStudentEvaluation(aulaId, alunoId, componenteId) {
+async function removeStudentEvaluation(alunoId, componenteId) {
     try {
         let pool = await sql.connect(config);
         let removeEvaluation = await pool.request()
-            .query("DELETE FROM AulaAluno WHERE AulaId = " + aulaId + " AND AlunoId = " + alunoId +
-                " AND ComponenteId = " + componenteId);
+            .query("DELETE FROM Nota WHERE AlunoId = " + alunoId +
+                " AND AvaliacaoId = " + componenteId);
         return removeEvaluation.recordsets;
     }
     catch (err) {

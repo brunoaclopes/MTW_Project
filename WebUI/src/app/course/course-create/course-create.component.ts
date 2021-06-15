@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {catchError} from "rxjs/operators";
 
 @Component({
   selector: 'app-course-create',
@@ -17,10 +15,7 @@ export class CourseCreateComponent {
 
   form = new Course('');
 
-  onRemove(){
-    //const headers = { 'content-type': 'application/json'}
-    //const body=JSON.stringify(this.form);
-    //console.log(body);
+  onPost(){
     this.http.post<Course>("http://localhost:8090/api/course", this.form).subscribe(value => {console.log(value)});
 
     this.router.navigate(['/course']);

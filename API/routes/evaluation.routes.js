@@ -60,8 +60,8 @@ module.exports = function(router){
         })
     })
 
-    router.route('/studentEvaluation/:aulaId/:alunoId/:componenteId').delete((request,response)=>{
-        dboperations.removeStudentEvaluation(request.params.aulaId, request.params.alunoId, request.params.componenteId).then(result => {
+    router.route('/studentEvaluation/:alunoId/:componenteId').delete((request,response)=>{
+        dboperations.removeStudentEvaluation(request.params.alunoId, request.params.componenteId).then(result => {
             response.status(204);
         })
     })
