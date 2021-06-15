@@ -28,8 +28,10 @@ const routes: Routes = [
   { path: 'newstudent', component: StudentCreateComponent},
   { path: 'newstudent/:id', component: StudentCreateComponent},
   { path: 'grades', component: GradeListComponent},
-  { path: 'newgrade', component: GradeCreateComponent},
+  { path: 'newgrade/:id', component: GradeCreateComponent},
+  { path: 'newgrade/:id/:idGrade', component: GradeCreateComponent},
   { path: 'newcomponent', component: EvaluationcompCreateComponent},
+  { path: 'newcomponent/:id', component: EvaluationcompCreateComponent}
   { path: 'subjects', component: SubjectListComponent},
   { path: 'newsubjects', component: SubjectCreateComponent},
   { path: 'newsubjects/:id', component: SubjectCreateComponent},

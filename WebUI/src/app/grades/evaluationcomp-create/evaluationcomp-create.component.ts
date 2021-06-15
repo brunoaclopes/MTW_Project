@@ -19,9 +19,10 @@ export class EvaluationcompCreateComponent implements OnInit{
               private router: Router) { }
 
   subjects: List[] = [];
-  form = new Evaluation('', 0);
+  form = new Evaluationnnnnn();
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('id');
 
     this.http.get<any[]>('http://localhost:8090/api/subjects')
       .subscribe(data => {
@@ -35,35 +36,41 @@ export class EvaluationcompCreateComponent implements OnInit{
         }
       );
 
-    // if(id!==null){
-    //   this.http.get<any[]>('http://localhost:8090/api/class/' + id)
-    //     .subscribe(data => {
-    //         for(let i = 0; i<data.length; i++){
-    //           console.log(data);
-    //           this.form.CourseId = data[0].CursoId;
-    //           this.form.YearId = data[0].AnoLetivoId;
-    //           this.form.Nome = data[0].Nome;
-    //         }
-    //       },
-    //       error => {
-    //         console.log("error");
-    //       }
-    //     );
-    // }
+     if(id!==null){
+       this.http.get<any[]>('http://localhost:8090/api/evaluation/' + id)
+         .subscribe(data => {
+             for(let i = 0; i<data.length; i++){
+               console.log(data);
+               this.form.Nome = data[0].Nome;
+               this.form.EvaluationId = data[0].DisciplinaId;
+             }
+           },
+           error => {
+             console.log("error");
+           }
+         );
+       console.log(this.form);
+     }
   }
 
   onAddEvaluationComponent(){
+    let id = this.route.snapshot.paramMap.get('id');
+
+    console.log(this.form);
+    console.log(id);
+
+    if(id == null)
+      this.http.post<Evaluationnnnnn>("http://localhost:8090/api/evaluation", this.form).subscribe(value => {console.log(value)});
+    else
+      this.http.put<Evaluationnnnnn>("http://localhost:8090/api/evaluation/" + id, this.form).subscribe(value => {console.log(value)});
 
     this.router.navigate(['/grades'])
   }
 
 }
 
-class Evaluation{
-  public Nome: string;
+class Evaluationnnnnn{
+  public Nome!: string;
   public EvaluationId!: number;
-  constructor(Nome: string, EvaluationId: number) {
-    this.Nome = Nome;
-    this.EvaluationId = EvaluationId;
-  }
+  constructor() {  }
 }

@@ -48,7 +48,7 @@ async function addEvaluation(evaluation) {
     try {
         let pool = await sql.connect(config);
         let insertEvaluation = await pool.request()
-            .query("INSERT INTO ComponenteAvaliacao VALUES ('" + evaluation.Nome + "', " + evaluation.CursoId + ")");
+            .query("INSERT INTO ComponenteAvaliacao VALUES ('" + evaluation.Nome + "', " + evaluation.EvaluationId + ")");
         return insertEvaluation.recordsets;
     }
     catch (err) {
@@ -56,13 +56,12 @@ async function addEvaluation(evaluation) {
     }
 }
 
-async function addStudentEvaluation(studentEvaluation) {
+async function addStudentEvaluation(studentEvaluation, id) {
     try {
         let pool = await sql.connect(config);
         let insertEvaluation = await pool.request()
-            .query("INSERT INTO AulaAluno VALUES (" + studentEvaluation.AulaId + ", " +
-                studentEvaluation.AlunoId + ", " + studentEvaluation.ComponenteId + ", " +
-                studentEvaluation.Avaliacao + ")");
+            .query("INSERT INTO Nota VALUES (" + studentEvaluation.StudentId + ", " +
+                id + ", " + studentEvaluation.Nota + ")");
         return insertEvaluation.recordsets;
     }
     catch (err) {
@@ -70,11 +69,11 @@ async function addStudentEvaluation(studentEvaluation) {
     }
 }
 
-async function editEvaluation(evaluation) {
+async function editEvaluation(evaluation, id) {
     try {
         let pool = await sql.connect(config);
         let updateEvaluation = await pool.request()
-            .query("UPDATE ComponenteAvaliacao SET Nome = '" + evaluation.Nome + "', CursoId = " + evaluation.CursoId + " WHERE Id = " + evaluation.Id);
+            .query("UPDATE ComponenteAvaliacao SET Nome = '" + evaluation.Nome + "', DisciplinaId = " + evaluation.EvaluationId + " WHERE Id = " + id);
         return updateEvaluation.recordsets;
     }
     catch (err) {
