@@ -7,10 +7,10 @@
     </mat-form-field>
     <br/>
     <mat-form-field appearance="standard" color="accent">
-      <mat-label>Course</mat-label>
-      <mat-select [(value)]="value" required>
-        <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
-          {{item[labelKey]}}
+      <mat-label>Subjects</mat-label>
+      <mat-select [(ngModel)]="form.EvaluationId">
+        <mat-option *ngFor="let subject of subjects" [value]="subject.value">
+          {{subject.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
