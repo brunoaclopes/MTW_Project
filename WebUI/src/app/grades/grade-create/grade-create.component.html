@@ -3,21 +3,16 @@
   <div style="display: inline-block; width: 100%">
     <mat-form-field appearance="standard" color="accent">
       <mat-label>Student</mat-label>
-      <mat-select [(value)]="value" required>
-        <mat-option *ngFor="let item of datasource" [value]="item[valueKey]">
-          {{item[labelKey]}}
+      <mat-select [(ngModel)]="form.StudentId" [ngModelOptions]="{standalone: true}">
+        <mat-option *ngFor="let student of students" [value]="student.value">
+          {{student.viewValue}}
         </mat-option>
       </mat-select>
     </mat-form-field>
     <br/>
-    <mat-form-field appearance="standard" color="accent" floatLabel="always">
-      <mat-label>Evaluation Component</mat-label>
-      <input matInput [placeholder]="evalComponent" disabled>
-    </mat-form-field>
-    <br/>
     <mat-form-field appearance="standard" color="accent">
       <mat-label>Grade</mat-label>
-      <input matInput type="number" max="20" placeholder="20" required>
+      <input matInput type="number" max="20" placeholder="20" required  [(ngModel)]="form.Nota" [ngModelOptions]="{standalone: true}">
     </mat-form-field>
   </div>
   <div style="display: flex">

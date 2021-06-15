@@ -19,7 +19,7 @@ export class EvaluationcompCreateComponent implements OnInit{
               private router: Router) { }
 
   subjects: List[] = [];
-  form = new Evaluation('', 0);
+  form = new Evaluationnnnnn();
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
@@ -56,21 +56,21 @@ export class EvaluationcompCreateComponent implements OnInit{
   onAddEvaluationComponent(){
     let id = this.route.snapshot.paramMap.get('id');
 
+    console.log(this.form);
+    console.log(id);
+
     if(id == null)
-      this.http.post<Evaluation>("http://localhost:8090/api/evaluation", this.form).subscribe(value => {console.log(value)});
+      this.http.post<Evaluationnnnnn>("http://localhost:8090/api/evaluation", this.form).subscribe(value => {console.log(value)});
     else
-      this.http.put<Evaluation>("http://localhost:8090/api/evaluation/" + id, this.form).subscribe(value => {console.log(value)});
+      this.http.put<Evaluationnnnnn>("http://localhost:8090/api/evaluation/" + id, this.form).subscribe(value => {console.log(value)});
 
     this.router.navigate(['/grades'])
   }
 
 }
 
-class Evaluation{
-  public Nome: string;
+class Evaluationnnnnn{
+  public Nome!: string;
   public EvaluationId!: number;
-  constructor(Nome: string, EvaluationId: number) {
-    this.Nome = Nome;
-    this.EvaluationId = EvaluationId;
-  }
+  constructor() {  }
 }

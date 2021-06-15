@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'newstudent/:id', component: StudentCreateComponent},
   { path: 'grades', component: GradeListComponent},
   { path: 'newgrade/:id', component: GradeCreateComponent},
+  { path: 'newgrade/:id/:idGrade', component: GradeCreateComponent},
   { path: 'newcomponent', component: EvaluationcompCreateComponent},
   { path: 'newcomponent/:id', component: EvaluationcompCreateComponent}
 ]
